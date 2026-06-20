@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GADA LOGISTICS</title>
+</head>
+
+<body style="font-family:Arial;text-align:center;padding:20px">
+
+<h1>מערכת לוגיסטיקה - GADA</h1>
+
+<p>מערכת עובדת - שלב ראשון</p>
+
+<button onclick="loadOrders()">בדיקת הזמנות</button>
+
+<pre id="output" style="text-align:right;background:#eee;padding:10px"></pre>
+
+<script>
+async function loadOrders() {
+  try {
+    const res = await fetch("/api/orders");
+    const data = await res.json();
+    document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+  } catch (err) {
+    document.getElementById("output").innerText = "שגיאה: " + err.message;
+  }
+}
+</script>
+
+</body>
+</html>
